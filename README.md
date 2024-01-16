@@ -98,6 +98,7 @@ spawn(function()
     game:GetService("ReplicatedStorage").Remotes.CommF_:InvokeServer("StartQuest",NameQuest,LvQuest)
     end
     elseif game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Visible == true then
+    TP(CFrameMon)
         if string.find(game:GetService("Players").LocalPlayer.PlayerGui.Main.Quest.Container.QuestTitle.Title.Text,NameMon) then
 print("Forcheck")
             for i,v in pairs(game:GetService("Workspace").Enemies:GetChildren()) do
@@ -105,8 +106,7 @@ print("Forcheck")
 print("Then")
                     if v.Humanoid.Health > 0 then
                     repeat wait()
-                        click()
-                        Equip(_G.SelectWeapon)
+                        
                         HealthMin = v.Humanoid.MaxHealth * 90 / 100
                         Magma = (v.HumanoidRootPart.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
                         if Magma <= 230 then
