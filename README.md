@@ -29,13 +29,26 @@ function CheckQuest()
     end
 
 
- function TP(P)
- print("TP")
-   local Distance = (P.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude -- จุดที่จะไป Position Only
-   local Speed = 300 -- ความเร็วของมึง
-   tweenService, tweenInfo = game:GetService("TweenService"), TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear)
-   tween = tweenService:Create(game:GetService("Players")["LocalPlayer"].Character.HumanoidRootPart, tweenInfo, {CFrame = P})
-   tween:Play()
+function TP(P)
+print("TP FUCNTION")
+     NoClip = true
+     Distance = (P.Position - game.Players.LocalPlayer.Character.HumanoidRootPart.Position).Magnitude
+     if Distance < 10 then
+         Speed = 1000
+     elseif Distance < 170 then
+         game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = P
+         Speed = 350
+     elseif Distance < 1000 then
+         Speed = 350
+     elseif Distance >= 1000 then
+         Speed = 280
+     end
+     game:GetService("TweenService"):Create(
+         game.Players.LocalPlayer.Character.HumanoidRootPart,
+         TweenInfo.new(Distance/Speed, Enum.EasingStyle.Linear),
+         {CFrame = P}
+     ):Play()
+     NoClip = false
  end
 
 spawn(function()
